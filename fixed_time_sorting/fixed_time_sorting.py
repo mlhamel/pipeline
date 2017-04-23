@@ -1,7 +1,7 @@
 import os
 import shutil
 
-SRC_DATA_PATH = "/pfs/data"
+SRC_DATA_PATH = "/pfs/flights"
 
 def move_per_day(dirpath, filename, dstpath="/pfs/out"):
     date, timestamp = filename.split("-")
