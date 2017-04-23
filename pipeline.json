@@ -4,7 +4,7 @@
   },
   "transform": {
     "cmd": [ "python", "/fixed_time_sorting.py" ],
-    "image": "python:3.6"
+    "image": "mlhamel/fixed_time_sorting"
   },
 "inputs": [
     {
