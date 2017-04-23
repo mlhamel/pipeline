@@ -4,7 +4,7 @@
   },
   "transform": {
     "cmd": [ "python3", "/fixed_time_sorting.py" ],
-    "image": "python/3.6.1"
+    "image": "python/3.6"
   },
 "inputs": [
     {
