@@ -1,3 +1,6 @@
 [submodule "src/pachyderm"]
 	path = src/pachyderm
 	url = git@github.com:pachyderm/pachyderm.git
+[submodule "src/dump1090"]
+	path = src/dump1090
+	url = git@github.com:mlhamel/dump1090.git
