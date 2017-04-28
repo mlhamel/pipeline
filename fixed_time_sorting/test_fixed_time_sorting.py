@@ -22,6 +22,7 @@ class TestFixedTimeSorting(unittest.TestCase):
 
         fixed_time_sorting.move_per_day(self.src_dir, "20171201-201020.json", dstpath=self.dst_dir)
 
+        self.assertEqual(os.listdir(self.src_dir), [])
         self.assertEqual(os.listdir(destination), ["20171201-201020.json"])
 
     def _touch_file(self, path, filename):
