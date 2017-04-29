@@ -1,25 +1,23 @@
-SUBDIRS := $(fixed_time_sorting summary_per_day)
+SUBDIRS = fixed_time_sorting summary_per_day
 
 .SHELLFLAGS = -e
-.PHONY: test build $(SUBDIRS)
+.PHONY: test $(SUBDIRS)
 .NOTPARALLEL:
 
-default: build
+default: update
 
-test:
-	$(MAKE) -C fixed_time_sorting test
-	$(MAKE) -C summary_per_day test
-build:
-	$(MAKE) -C fixed_time_sorting build
-	$(MAKE) -C summary_per_day build
-tag:
-	$(MAKE) -C fixed_time_sorting tag
-	$(MAKE) -C summary_per_day tag
-push:
-	$(MAKE) -C fixed_time_sorting push
-	$(MAKE) -C summary_per_day push
+test: $(SUBDIRS)
+build: $(SUBDIRS)
+tag: $(SUBDIRS)
+push: $(SUBDIRS)
+
+$(SUBDIRS):
+	$(MAKE) -C $@ $(MAKECMDGOALS)
 
 create-pipeline:
-	pachctl create-pipeline -f pipeline.json --push-images
+	pachctl create-pipeline -f pipeline.json
 update-pipeline:
-	pachctl update-pipeline -f pipeline.json --push-images
+	pachctl update-pipeline -f pipeline.json
+
+update: build tag push update-pipeline
+create:	build tag push create-pipeline
