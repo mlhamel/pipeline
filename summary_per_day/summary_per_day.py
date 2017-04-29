@@ -33,9 +33,11 @@ def build_summary(entries):
         speed += entry["speed"]
         flights.append(entry)
 
+    divider = max([1, quantity])
+
     summary = {}
-    summary["altitude"] = int(altitude/quantity)
-    summary["speed"] = int(speed/quantity)
+    summary["altitude"] = int(altitude/divider)
+    summary["speed"] = int(speed/divider)
     summary["quantity"] = quantity
     summary["max_speed"] = max_speed
     summary["min_altitude"] = min_altitude
