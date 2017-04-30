@@ -16,7 +16,13 @@ $(SUBDIRS):
 
 all: build tag push
 
+
+init-pipeline:
+	pachctl create-repo flights
+	pachctl create-pipeline -f pipeline.json
+
 create-pipeline:
 	pachctl create-pipeline -f pipeline.json
+
 update-pipeline:
 	pachctl update-pipeline -f pipeline.json
