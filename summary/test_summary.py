@@ -61,14 +61,28 @@ class TestSummaryPerDay(unittest.TestCase):
         self.assertEqual(results, self.expected_summary)
 
     def test_write_summary(self):
-        destination = os.path.join(self.dst_dir, "summary-20171201.json")
+        destination = os.path.join(self.dst_dir, "summary-20171201-201020.json")
 
         self.assertFalse(os.path.exists(destination))
 
-        summary.write_summary(self.expected_summary, "20171201",
+        summary.write_summary("20171201-201020", self.expected_summary,
             dstpath=self.dst_dir)
 
         self.assertTrue(os.path.exists(destination))
+
+        with open(destination) as fd:
+            resuls = json.loads(fd.read())
+
+        self.assertEqual(resuls, self.expected_summary)
+
+    def test_write_summary_multiple_times(self):
+        destination = os.path.join(self.dst_dir, "summary-20171201-201020.json")
+
+        summary.write_summary("20171201-201020", self.expected_summary,
+            dstpath=self.dst_dir)
+
+        summary.write_summary("20171201-201020", self.expected_summary,
+            dstpath=self.dst_dir)
 
         with open(destination) as fd:
             resuls = json.loads(fd.read())

@@ -7,7 +7,7 @@ import os
 SRC_DATA_PATH = "/pfs/fixed_time_sorting"
 
 
-def write_summary(summary, timestamp, dstpath="/pfs/out"):
+def write_summary(timestamp, summary, dstpath="/pfs/out"):
     filename = "summary-{timestamp}.json".format(timestamp=timestamp)
     filepath = os.path.join(dstpath, filename)
 
@@ -59,11 +59,12 @@ def load_entries(timestamp, src_dir=SRC_DATA_PATH):
 
 
 def main():
-    timestamp = time.strftime("%Y%m%d")
+    date = time.strftime("%Y%m%d")
+    timestamp = time.strftime("%Y%m%d-%M%H%S")
 
-    entries = load_entries(timestamp)
+    entries = load_entries(date)
     summary = build_summary(entries)
-    write_summary(summary, timestamp)
+    write_summary(timestamp, summary)
 
 
 if __name__ == '__main__':
