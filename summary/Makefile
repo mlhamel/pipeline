@@ -17,10 +17,10 @@ test:
 	python -m unittest discover .
 
 do-docker-build:
-	docker build -t summary_per_day --no-cache --rm . | tee build.log || exit 1
+	docker build -t summary --no-cache --rm --force-rm . | tee build.log
 
 do-docker-tag:
-	docker tag summary_per_day mlhamel/summary_per_day || exit 1
+	docker tag summary mlhamel/summary:latest
 
 do-docker-push:
-	docker push mlhamel/summary_per_day
+	docker push mlhamel/summary

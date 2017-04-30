@@ -2,7 +2,7 @@ import unittest
 import tempfile
 import os
 import json
-import summary_per_day
+import summary
 
 
 class TestSummaryPerDay(unittest.TestCase):
@@ -51,21 +51,21 @@ class TestSummaryPerDay(unittest.TestCase):
         self._createEntry("20171201", "20171201-201022.json",
             [self.expected_entries[1]])
 
-        entries = summary_per_day.load_entries("20171201", src_dir=self.src_dir)
+        entries = summary.load_entries("20171201", src_dir=self.src_dir)
 
         self.assertEqual(entries, self.expected_entries)
 
     def test_build_summary(self):
-        summary = summary_per_day.build_summary(self.expected_entries)
+        results = summary.build_summary(self.expected_entries)
 
-        self.assertEqual(summary, self.expected_summary)
+        self.assertEqual(results, self.expected_summary)
 
     def test_write_summary(self):
         destination = os.path.join(self.dst_dir, "summary-20171201.json")
 
         self.assertFalse(os.path.exists(destination))
 
-        summary_per_day.write_summary(self.expected_summary, "20171201",
+        summary.write_summary(self.expected_summary, "20171201",
             dstpath=self.dst_dir)
 
         self.assertTrue(os.path.exists(destination))

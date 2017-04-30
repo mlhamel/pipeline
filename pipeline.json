@@ -3,13 +3,30 @@
     "name": "fixed_time_sorting"
   },
   "transform": {
-    "cmd": [ "python", "/fixed_time_sorting.py" ],
-    "image": "mlhamel/fixed_time_sorting"
+    "image": "mlhamel/fixed_time_sorting",
+    "cmd": [ "python", "/fixed_time_sorting.py" ]
   },
 "inputs": [
     {
       "repo": {
         "name": "flights"
+      },
+      "glob": "/*"
+    }
+  ]
+}
+{
+  "pipeline": {
+    "name": "summary"
+  },
+  "transform": {
+    "image": "mlhamel/summary",
+    "cmd": [ "python", "/summary.py" ]
+  },
+"inputs": [
+    {
+      "repo": {
+        "name": "fixed_time_sorting"
       },
       "glob": "/*"
     }
