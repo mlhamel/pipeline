@@ -64,7 +64,7 @@ def main():
 
     entries = load_entries(date)
     summary = build_summary(entries)
-    write_summary(timestamp, summary)
+    write_summary(date, summary)
 
 
 if __name__ == '__main__':
