@@ -20,7 +20,7 @@ do-docker-build:
 	docker build -t summary --no-cache --rm --force-rm . | tee build.log
 
 do-docker-tag:
-	docker tag summary mlhamel/summary:latest
+	docker tag summary:latest mlhamel/summary:latest
 
 do-docker-push:
 	docker push mlhamel/summary
