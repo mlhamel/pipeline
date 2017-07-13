@@ -60,7 +60,6 @@ def load_entries(timestamp, src_dir=SRC_DATA_PATH):
 
 def main():
     date = time.strftime("%Y%m%d")
-    timestamp = time.strftime("%Y%m%d-%M%H%S")
 
     entries = load_entries(date)
     summary = build_summary(entries)
